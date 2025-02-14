@@ -10,4 +10,7 @@ object GameLogic extends App {
   val board = Board(List(character1, character2))
 
   println(board.guessCharecter("Lan"))
+  println(board.askQuestion("male"))
+  println(board.askQuestion("female"))
+  println(board.askQuestion("hair", "brown"))
 }
