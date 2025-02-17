@@ -1,8 +1,14 @@
-case class Board (characters: List[Character]) {
+import scala.util.Random
 
-  val characterToGuess: Character = characters.head
-  def guessCharecter(name: String) : Boolean = {
-  characterToGuess.name == name
+case class Board(characters: List[Character]) {
+
+  val randomNumGen = new Random()
+  val randomIndex = randomNumGen.nextInt(characters.length)
+
+  val characterToGuess = characters(randomIndex)
+
+  def guessCharacter(name: String): Boolean = {
+    characterToGuess.name == name
   }
 
   def askQuestion(userQuestion: String, guess: String = ""): Boolean = {
@@ -14,6 +20,16 @@ case class Board (characters: List[Character]) {
       characterToGuess.hairColour == guess
     } else if (userQuestion == "eyes") {
       characterToGuess.eyeColour == guess
+    } else if (userQuestion == "jumper"){
+      characterToGuess.jumperColour == guess
+    } else if (userQuestion == "glasses"){
+      characterToGuess.hasGlasses
+    } else if (userQuestion == "pet"){
+      characterToGuess.hasPet
+    } else if (userQuestion == "beard"){
+      characterToGuess.hasBeard
+    } else if (userQuestion == "hat"){
+      characterToGuess.hasHat
     } else false
   }
 }
