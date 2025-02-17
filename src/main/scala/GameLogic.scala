@@ -31,7 +31,7 @@ object GameLogic extends App {
     println()
 
     if (userChoice == "1") {
-      val nameGuess: String = readLine("Enter character's name: ")
+      val nameGuess: String = readLine("Enter character's name: ").toLowerCase.capitalize
 
       if (board.guessCharacter(nameGuess)) {
         println("You've won, congrats!")
@@ -46,9 +46,9 @@ object GameLogic extends App {
       println("4. Does the character have a pet?")
       println("5. Does the character have a beard?")
       println("6. Does the character have a hat?")
-      println("7. Does the character have a (Colour) hair?")
-      println("8. Does the character have a (Colour) eyes?")
-      println("9. Does the character have a (Colour) jumper?")
+      println("7. Does the character have a (colour) hair?")
+      println("8. Does the character have a (colour) eyes?")
+      println("9. Does the character have a (colour) jumper?")
 
       val userQuestionChoice: String = readLine("Choose a question: ")
 
@@ -101,32 +101,32 @@ object GameLogic extends App {
           println("Loserrr! try again!")
         }
       } else if (userQuestionChoice == "7") {
-        val hairColour: String = readLine("Enter the hair colour!🔫: ")
+        val hairColour: String = readLine("Enter the hair colour!🔫: ").toLowerCase
 
         val response: Boolean = board.askQuestion("hair", hairColour)
 
         if (response) {
-          println(s"Well done, the character has $hairColour hair !")
+          println(s"Well done, the character has $hairColour hair!")
         } else {
           println("Loserrr! try again!")
         }
       } else if (userQuestionChoice == "8") {
-        val eyeColour: String = readLine("Enter the eye colour!🔫: ")
+        val eyeColour: String = readLine("Enter the eye colour!🔫: ").toLowerCase
 
         val response: Boolean = board.askQuestion("eyes", eyeColour)
 
         if (response) {
-          println(s"Well done, the character has $eyeColour eyes !")
+          println(s"Well done, the character has $eyeColour eyes!")
         } else {
           println("Loserrr! try again!")
         }
       } else if (userQuestionChoice == "9") {
-        val jumperColour: String = readLine("Enter the jumper colour!🔫: ")
+        val jumperColour: String = readLine("Enter the jumper colour!🔫: ").toLowerCase
 
         val response: Boolean = board.askQuestion("jumper", jumperColour)
 
         if (response) {
-          println(s"Well done, the character has $jumperColour jumper !")
+          println(s"Well done, the character has $jumperColour jumper!")
         } else {
           println("Loserrr! try again!")
         }
