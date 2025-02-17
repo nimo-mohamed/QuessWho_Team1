@@ -2,10 +2,10 @@ import scala.util.Random
 
 case class Board(characters: List[Character]) {
 
-  val randomNumGen = new Random()
-  val randomIndex = randomNumGen.nextInt(characters.length)
+  private val randomNumGen = new Random()
+  private val randomIndex = randomNumGen.nextInt(characters.length)
 
-  val characterToGuess = characters(randomIndex)
+  private val characterToGuess = characters(randomIndex)
 
   def guessCharacter(name: String): Boolean = {
     characterToGuess.name == name
