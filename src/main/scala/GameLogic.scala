@@ -2,13 +2,13 @@ import scala.io.StdIn.readLine
 
 object GameLogic extends App {
 
-  val character1 = Character("Ash", "green", "green", "brown", isMale = true, hasGlasses = false, hasBeard = true, hasHat = false, hasPet = false)
-  val character2 = Character("Nemo", "pink", "brown", "black", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = false)
-  val character3 = Character("Tudor", "green", "green", "brown", isMale = true, hasGlasses = true, hasBeard = true, hasHat = false, hasPet = false)
-  val character4 = Character("Lan", "green", "green", "brown", isMale = false, hasGlasses = false, hasBeard = false, hasHat = false, hasPet = false)
-  val character5 = Character("April", "green", "green", "brown", isMale = false, hasGlasses = false, hasBeard = false, hasHat = false, hasPet = true)
+  val character1: Character = Character("Ash", "green", "green", "brown", isMale = true, hasGlasses = false, hasBeard = true, hasHat = false, hasPet = false)
+  val character2: Character = Character("Nemo", "pink", "brown", "black", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = false)
+  val character3: Character = Character("Tudor", "green", "green", "brown", isMale = true, hasGlasses = true, hasBeard = true, hasHat = false, hasPet = false)
+  val character4: Character = Character("Lan", "green", "green", "brown", isMale = false, hasGlasses = false, hasBeard = false, hasHat = false, hasPet = false)
+  val character5: Character = Character("April", "green", "green", "brown", isMale = false, hasGlasses = false, hasBeard = false, hasHat = false, hasPet = true)
 
-  val board = Board(List(character1, character2, character3, character4, character5))
+  val board: Board = Board(List(character1, character2, character3, character4, character5))
 
   println("Welcome to Quess Who!")
   println("Here are the characters on the board: ")
@@ -43,7 +43,7 @@ object GameLogic extends App {
       println("9. Does the character have a (Colour) jumper?")
       val userQuestionChoice: String = readLine("Choose a question!")
       if (userQuestionChoice == "1") {
-        val response = board.askQuestion("male")
+        val response: Boolean = board.askQuestion("male")
         if (response) {
           println("Well done, the character is MALE!")
         } else {
@@ -51,7 +51,7 @@ object GameLogic extends App {
         }
       }
       if (userQuestionChoice == "2") {
-        val response = board.askQuestion("female")
+        val response: Boolean = board.askQuestion("female")
         if (response) {
           println("Well done, the character is FEMALE!")
         } else {
@@ -59,7 +59,7 @@ object GameLogic extends App {
         }
       }
       if (userQuestionChoice == "3") {
-        val response = board.askQuestion("glasses")
+        val response: Boolean = board.askQuestion("glasses")
         if (response) {
           println("Well done, the character has glasses!")
         } else {
@@ -67,7 +67,7 @@ object GameLogic extends App {
         }
       }
       if (userQuestionChoice == "4") {
-        val response = board.askQuestion("pet")
+        val response: Boolean = board.askQuestion("pet")
         if (response) {
           println("Well done, the character has a pet!")
         } else {
@@ -75,7 +75,7 @@ object GameLogic extends App {
         }
       }
       if (userQuestionChoice == "5") {
-        val response = board.askQuestion("beard")
+        val response: Boolean = board.askQuestion("beard")
         if (response) {
           println("Well done, the character has a beard!")
         } else {
@@ -83,7 +83,7 @@ object GameLogic extends App {
         }
       }
       if (userQuestionChoice == "6") {
-        val response = board.askQuestion("hat")
+        val response: Boolean = board.askQuestion("hat")
         if (response) {
           println("Well done, the character has a hat!")
         } else {
@@ -92,7 +92,7 @@ object GameLogic extends App {
       }
       if (userQuestionChoice == "7") {
         val hairColour: String = readLine("Enter the hair colour!🔫: ")
-        val response = board.askQuestion("hair", hairColour)
+        val response: Boolean = board.askQuestion("hair", hairColour)
         if (response) {
           println(s"Well done, the character has $hairColour hair !")
         } else {
@@ -101,7 +101,7 @@ object GameLogic extends App {
       }
       if (userQuestionChoice == "8") {
         val eyeColour: String = readLine("Enter the eye colour!🔫: ")
-        val response = board.askQuestion("eyes", eyeColour)
+        val response: Boolean = board.askQuestion("eyes", eyeColour)
         if (response) {
           println(s"Well done, the character has $eyeColour eyes !")
         } else {
@@ -110,7 +110,7 @@ object GameLogic extends App {
       }
       if (userQuestionChoice == "9") {
         val jumperColour: String = readLine("Enter the jumper colour!🔫: ")
-        val response = board.askQuestion("jumper", jumperColour)
+        val response: Boolean = board.askQuestion("jumper", jumperColour)
         if (response) {
           println(s"Well done, the character has $jumperColour jumper !")
         } else {
