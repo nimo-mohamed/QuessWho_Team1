@@ -11,17 +11,18 @@ object GameLogic extends App {
   val board: Board = Board(List(character1, character2, character3, character4, character5))
 
   println("Welcome to Quess Who!")
-  println("Here are the characters on the board: ")
+  println("Here are the characters on the board:\n")
   board.characters.foreach(character => println(character.name))
-
+  println
   println("Time to guess!")
 
   while (true) {
-    println("Select one of the options below:")
+    println("Select one of the options below:\n")
     println("1. Guess character")
     println("2. Ask question")
-    println("3. Give me a hint!")
+    println("3. Give me a hint!\n")
     val userChoice: String = readLine("Your choice: ")
+    println
     if (userChoice == "1") {
       val nameGuess: String = readLine("Enter character's name: ")
       if (board.guessCharacter(nameGuess)) {
@@ -41,7 +42,7 @@ object GameLogic extends App {
       println("8. Does the character have a (Colour) eyes?")
 
       println("9. Does the character have a (Colour) jumper?")
-      val userQuestionChoice: String = readLine("Choose a question!")
+      val userQuestionChoice: String = readLine("Choose a question: ")
       if (userQuestionChoice == "1") {
         val response: Boolean = board.askQuestion("male")
         if (response) {
@@ -116,15 +117,21 @@ object GameLogic extends App {
         } else {
           println("Loserrr! try again!")
         }
+      } else {
+        println("That's not a valid question choice.")
       }
     }
-    if (userChoice == "3") {
+    else if (userChoice == "3") {
       println("1. Tell me a fact about the character")
       println("2. Remove one wrong character from the game")
-      val userHintChoice: String = readLine("Enter hint choice (1 or 2)")
+      val userHintChoice: String = readLine("Enter hint choice: ")
       if (userHintChoice == "2") {
         println(s"A wrong character is ${board.wrongCharacter.name}")
+      } else {
+        println("That's not a valid hint choice.")
       }
+    } else {
+      println("That's not a valid choice.")
     }
   }
 }
