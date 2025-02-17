@@ -4,9 +4,21 @@ case class Board(characters: List[Character]) {
 
   private val randomNumGen = new Random()
 
-  private val randomIndex = randomNumGen.nextInt(characters.length)
+  private val characterToGuessIndex = randomNumGen.nextInt(characters.length)
 
-  private val characterToGuess = characters(randomIndex)
+  private val characterToGuess = characters(characterToGuessIndex)
+
+  def getRandomWrongCharacterIndex: Int = {
+    var randomIndex = randomNumGen.nextInt(characters.length)
+    while (randomIndex == characterToGuessIndex) {
+      randomIndex = randomNumGen.nextInt(characters.length)
+    }
+    randomIndex
+  }
+
+  private val wrongCharacterIndex = getRandomWrongCharacterIndex
+
+  val wrongCharacter = characters(wrongCharacterIndex)
 
   def guessCharacter(name: String): Boolean = {
     characterToGuess.name == name
@@ -34,3 +46,4 @@ case class Board(characters: List[Character]) {
     } else false
   }
 }
+

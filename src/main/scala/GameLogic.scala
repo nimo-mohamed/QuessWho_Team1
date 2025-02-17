@@ -20,6 +20,7 @@ object GameLogic extends App {
     println("Select one of the options below:")
     println("1. Guess character")
     println("2. Ask question")
+    println("3. Give me a hint!")
     val userChoice: String = readLine("Your choice: ")
     if (userChoice == "1") {
       val nameGuess: String = readLine("Enter character's name: ")
@@ -115,6 +116,14 @@ object GameLogic extends App {
         } else {
           println("Loserrr! try again!")
         }
+      }
+    }
+    if (userChoice == "3") {
+      println("1. Tell me a fact about the character")
+      println("2. Remove one wrong character from the game")
+      val userHintChoice: String = readLine("Enter hint choice (1 or 2)")
+      if (userHintChoice == "2") {
+        println(s"A wrong character is ${board.wrongCharacter.name}")
       }
     }
   }
