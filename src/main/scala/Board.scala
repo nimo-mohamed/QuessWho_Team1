@@ -4,6 +4,7 @@ case class Board(characters: List[Character], player1: Player, player2: Player) 
   private var currentPlayer: Player = _
 
   private val randomNumGen: Random = new Random()
+
   initialisePlayers()
 
   def switchPlayer(): Unit = currentPlayer = currentPlayer.opponent
