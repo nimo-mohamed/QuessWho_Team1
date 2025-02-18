@@ -1,7 +1,5 @@
 # QuessWho_Team1
 
-# QuessWho
-
 ## Introduction
 QuessWho is a Scala-based command-line game inspired by the classic "Guess Who?" board game. Players attempt to identify a hidden character by asking yes/no questions about their attributes. The game is implemented using functional and object-oriented programming principles in Scala.
 
