@@ -17,7 +17,7 @@ QuessWho is a Scala-based command-line game inspired by the classic "Guess Who?"
 
 ### Clone the Repository
 ```sh
-git clone https://github.com/YourGitHubUsername/QuessWho.git
+git clone https://github.com/nimo-mohamed/QuessWho_Team1
 cd QuessWho
 ```
 
