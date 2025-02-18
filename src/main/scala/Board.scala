@@ -12,7 +12,7 @@ case class Board(characters: List[Character], player1: Player, player2: Player) 
 
   def getCurrentPlayerName: String = currentPlayer.name
 
-  def getRandomCharacter: Character = {
+  private def getRandomCharacter: Character = {
     val randomCharacterIndex: Int = randomNumGen.nextInt(characters.length)
     characters(randomCharacterIndex)
   }
@@ -45,12 +45,12 @@ case class Board(characters: List[Character], player1: Player, player2: Player) 
     } else "You already used this hint!"
   }
 
-  def initialisePlayers(): Unit = {
-   currentPlayer = player1
-   player1.opponent = player2
-   player2.opponent = player1
-   player1.characterToGuess = getRandomCharacter
-   player2.characterToGuess = getRandomCharacter
+  private def initialisePlayers(): Unit = {
+    currentPlayer = player1
+    player1.opponent = player2
+    player2.opponent = player1
+    player1.characterToGuess = getRandomCharacter
+    player2.characterToGuess = getRandomCharacter
   }
 
   def guessCharacter(name: String): Boolean = {

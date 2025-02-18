@@ -2,21 +2,21 @@ import scala.io.StdIn.readLine
 
 object GameLogic extends App {
 
-  val character1 = Character("Alice", "blue", "blonde", "red", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
-  val character2 = Character("Bob", "brown", "black", "blue", isMale = true, hasGlasses = false, hasBeard = true, hasHat = true, hasPet = false)
-  val character3 = Character("Charlie", "green", "brown", "green", isMale = true, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
-  val character4 = Character("Diana", "hazel", "red", "yellow", isMale = false, hasGlasses = false, hasBeard = false, hasHat = true, hasPet = false)
-  val character5 = Character("Eve", "blue", "black", "purple", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
-  val character6 = Character("Frank", "brown", "blonde", "orange", isMale = true, hasGlasses = false, hasBeard = true, hasHat = true, hasPet = false)
-  val character7 = Character("Grace", "green", "brown", "pink", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
-  val character8 = Character("Hank", "hazel", "red", "blue", isMale = true, hasGlasses = false, hasBeard = true, hasHat = true, hasPet = false)
-  val character9 = Character("Ivy", "blue", "black", "green", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
-  val character10 = Character("Jack", "brown", "blonde", "yellow", isMale = true, hasGlasses = false, hasBeard = true, hasHat = true, hasPet = false)
+  private val character1 = Character("Alice", "blue", "blonde", "red", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
+  private val character2 = Character("Bob", "brown", "black", "blue", isMale = true, hasGlasses = false, hasBeard = true, hasHat = true, hasPet = false)
+  private val character3 = Character("Charlie", "green", "brown", "green", isMale = true, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
+  private val character4 = Character("Diana", "hazel", "red", "yellow", isMale = false, hasGlasses = false, hasBeard = false, hasHat = true, hasPet = false)
+  private val character5 = Character("Eve", "blue", "black", "purple", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
+  private val character6 = Character("Frank", "brown", "blonde", "orange", isMale = true, hasGlasses = false, hasBeard = true, hasHat = true, hasPet = false)
+  private val character7 = Character("Grace", "green", "brown", "pink", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
+  private val character8 = Character("Hank", "hazel", "red", "blue", isMale = true, hasGlasses = false, hasBeard = true, hasHat = true, hasPet = false)
+  private val character9 = Character("Ivy", "blue", "black", "green", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
+  private val character10 = Character("Jack", "brown", "blonde", "yellow", isMale = true, hasGlasses = false, hasBeard = true, hasHat = true, hasPet = false)
 
-  val player1: Player = Player("Andy")
-  val player2: Player = Player("April")
+  private val player1: Player = Player("Andy")
+  private val player2: Player = Player("April")
 
-  val board: Board = Board(List(character1, character2, character3, character4, character5, character6, character7, character8, character9, character10), player1, player2)
+  private val board: Board = Board(List(character1, character2, character3, character4, character5, character6, character7, character8, character9, character10), player1, player2)
 
   println("Welcome to Quess Who!")
   println("Here are the characters on the board:\n")
@@ -141,6 +141,7 @@ object GameLogic extends App {
       println("2. Remove one wrong character from the game\n")
 
       val userHintChoice: String = readLine("Enter hint choice: ")
+
       if (userHintChoice == "1") {
         println(board.getRandomTraitHint)
       } else if (userHintChoice == "2") {
@@ -151,7 +152,9 @@ object GameLogic extends App {
     } else {
       println("That's not a valid choice.")
     }
+
     board.switchPlayer()
+
     println()
   }
 }
