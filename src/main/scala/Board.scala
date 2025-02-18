@@ -1,69 +1,81 @@
 import scala.util.Random
 
-case class Board(characters: List[Character]) {
+case class Board(characters: List[Character], player1: Player, player2: Player) {
 
   private val randomNumGen: Random = new Random()
 
-  private val characterToGuessIndex: Int = randomNumGen.nextInt(characters.length)
+  private var currentPlayer: Player = _
 
-  private val characterToGuess: Character = characters(characterToGuessIndex)
+  initialisePlayers()
 
-  private var hasUsedWrongCharacterHint: Boolean = false
+  def switchPlayer(): Unit = currentPlayer = currentPlayer.opponent
 
-  private var hasUsedRandomTraitHint: Boolean = false
+  def getCurrentPlayerName: String = currentPlayer.name
+
+  def getRandomCharacter: Character = {
+    val randomCharacterIndex: Int = randomNumGen.nextInt(characters.length)
+    characters(randomCharacterIndex)
+  }
 
   def getRandomWrongCharacterName: String =
-    if (!hasUsedWrongCharacterHint) {
-      hasUsedWrongCharacterHint = true
+    if (!currentPlayer.hasUsedWrongCharacterHint) {
+      currentPlayer.hasUsedWrongCharacterHint = true
       if (characters.length > 1) {
-        var randomIndex: Int = randomNumGen.nextInt(characters.length)
-        while (randomIndex == characterToGuessIndex) {
-          randomIndex = randomNumGen.nextInt(characters.length)
-        }
-        characters(randomIndex).name
+        val wrongCharacters: List[Character] = characters.filter(character => character != currentPlayer.characterToGuess)
+        val randomWrongCharacterIndex: Int = randomNumGen.nextInt(wrongCharacters.length)
+        wrongCharacters(randomWrongCharacterIndex).name
       } else "There's only ONE character to guess dummy😒! "
     } else "You already used this hint!"
 
-  def getRandomTraitHint: String =
-  if (!hasUsedRandomTraitHint) {
-    hasUsedRandomTraitHint = true
-    val characterTraits: List[String] = List(
-      s"The character has ${characterToGuess.eyeColour} eyes.",
-      s"The character has ${characterToGuess.hairColour} hair.",
-      s"The character has a ${characterToGuess.jumperColour} jumper.",
-      s"The character is ${if (characterToGuess.isMale) "male" else "not male"}",
-      s"The character ${if (characterToGuess.hasPet) "has" else "does not have"} a pet.",
-      s"The character ${if (characterToGuess.hasHat) "has" else "does not have"} a hat.",
-      s"The character ${if (characterToGuess.hasBeard) "has" else "does not have"} a beard.",
-      s"The character ${if (characterToGuess.hasGlasses) "has" else "does not have"} glasses.",
-    )
-    val randomTraitIndex: Int = randomNumGen.nextInt(characterTraits.length)
-    characterTraits(randomTraitIndex)
-  }  else "You already used this hint!"
+  def getRandomTraitHint: String = {
+    if (!currentPlayer.hasUsedRandomTraitHint) {
+      currentPlayer.hasUsedRandomTraitHint = true
+      val characterTraits: List[String] = List(
+        s"The character has ${currentPlayer.characterToGuess.eyeColour} eyes.",
+        s"The character has ${currentPlayer.characterToGuess.hairColour} hair.",
+        s"The character has a ${currentPlayer.characterToGuess.jumperColour} jumper.",
+        s"The character is ${if (currentPlayer.characterToGuess.isMale) "male" else "not male"}",
+        s"The character ${if (currentPlayer.characterToGuess.hasPet) "has" else "does not have"} a pet.",
+        s"The character ${if (currentPlayer.characterToGuess.hasHat) "has" else "does not have"} a hat.",
+        s"The character ${if (currentPlayer.characterToGuess.hasBeard) "has" else "does not have"} a beard.",
+        s"The character ${if (currentPlayer.characterToGuess.hasGlasses) "has" else "does not have"} glasses.",
+      )
+      val randomTraitIndex: Int = randomNumGen.nextInt(characterTraits.length)
+      characterTraits(randomTraitIndex)
+    } else "You already used this hint!"
+  }
+
+  def initialisePlayers(): Unit = {
+   currentPlayer = player1
+   player1.opponent = player2
+   player2.opponent = player1
+   player1.characterToGuess = getRandomCharacter
+   player2.characterToGuess = getRandomCharacter
+  }
 
   def guessCharacter(name: String): Boolean = {
-    characterToGuess.name == name
+    currentPlayer.characterToGuess.name == name
   }
 
   def askQuestion(userQuestion: String, guess: String = ""): Boolean = {
     if (userQuestion == "male") {
-      characterToGuess.isMale
+      currentPlayer.characterToGuess.isMale
     } else if (userQuestion == "female") {
-      !characterToGuess.isMale
+      !currentPlayer.characterToGuess.isMale
     } else if (userQuestion == "hair") {
-      characterToGuess.hairColour == guess
+      currentPlayer.characterToGuess.hairColour == guess
     } else if (userQuestion == "eyes") {
-      characterToGuess.eyeColour == guess
+      currentPlayer.characterToGuess.eyeColour == guess
     } else if (userQuestion == "jumper") {
-      characterToGuess.jumperColour == guess
+      currentPlayer.characterToGuess.jumperColour == guess
     } else if (userQuestion == "glasses") {
-      characterToGuess.hasGlasses
+      currentPlayer.characterToGuess.hasGlasses
     } else if (userQuestion == "pet") {
-      characterToGuess.hasPet
+      currentPlayer.characterToGuess.hasPet
     } else if (userQuestion == "beard") {
-      characterToGuess.hasBeard
+      currentPlayer.characterToGuess.hasBeard
     } else if (userQuestion == "hat") {
-      characterToGuess.hasHat
+      currentPlayer.characterToGuess.hasHat
     } else false
   }
 }
