@@ -1,99 +1,67 @@
-# QuessWho_Team1
+# Quess Who 🔎 - Mini Project
 
 ## Introduction
-QuessWho is a Scala-based command-line game inspired by the classic "Guess Who?" board game. Players attempt to identify a hidden character by asking yes/no questions about their attributes. The game is implemented using functional and object-oriented programming principles in Scala.
+"Guess Who?" is a classic deduction game where players ask yes-or-no questions to eliminate characters and identify the opponent’s character. This project implements the backend logic for the game in **Scala**.
 
 ## Features
-- A list of predefined characters with unique attributes.
-- A random character selection mechanism.
-- Question-based elimination system.
-- Hint system providing additional clues.
-- Interactive command-line gameplay.
+- **Random Character Selection**: Each player is assigned a secret character.
+- **Question-based Deduction**: Players can ask predefined questions about their opponent’s character traits.
+- **Hints System**: Players can use hints to get clues about the hidden character.
+- **Two-Player Turn-Based Logic**: Players take turns asking questions and guessing characters.
 
-## Installation
+## How It Works
+1. At the start of the game, each player is assigned a random character.
+2. Players take turns asking questions about the opponent’s character (e.g., "Does the character have glasses?").
+3. Based on the answers, players eliminate characters.
+4. Players can use hints to narrow down the options.
+5. The game continues until a player correctly guesses the opponent’s character.
+
+## Installation & Running the Game
 ### Prerequisites
-- Ensure you have Scala installed on your system. You can download it from [Scala's official site](https://www.scala-lang.org/download/).
-- Install [sbt](https://www.scala-sbt.org/) for managing dependencies and running the project.
+- Scala installed (`scala -version` to check)
 
-### Clone the Repository
-```sh
-git clone https://github.com/nimo-mohamed/QuessWho_Team1
-cd QuessWho
-```
+## Characters Table
+Below is a list of characters and their traits:
 
-### Running the Game
-```sh
-sbt run
-```
+| Name    | Eye Colour | Hair Colour | Jumper Colour | Male | Glasses | Beard | Hat | Pet |
+|---------|-----------|-------------|---------------|------|---------|-------|-----|-----|
+| Alice   | Blue      | Blonde      | Red           | No   | Yes     | No    | No  | Yes |
+| Bob     | Brown     | Black       | Blue          | Yes  | No      | Yes   | Yes | No  |
+| Charlie | Green     | Brown       | Green         | Yes  | Yes     | No    | No  | Yes |
+| Diana   | Hazel     | Red         | Yellow        | No   | No      | No    | Yes | No  |
+| Eve     | Blue      | Black       | Purple        | No   | Yes     | No    | No  | Yes |
+| Frank   | Brown     | Blonde      | Orange        | Yes  | No      | Yes   | Yes | No  |
+| Grace   | Green     | Brown       | Pink          | No   | Yes     | No    | No  | Yes |
+| Hank    | Hazel     | Red         | Blue          | Yes  | No      | Yes   | Yes | No  |
+| Ivy     | Blue      | Black       | Green         | No   | Yes     | No    | No  | Yes |
+| Jack    | Brown     | Blonde      | Yellow        | Yes  | No      | Yes   | Yes | No  |
 
-## How to Play
-1. The game will randomly select a character from the list.
-2. Players can:
-   - **Ask a question** about an attribute of the hidden character.
-   - **Make a guess** if they think they know the character.
-   - **Request a hint** for additional clues.
-3. The game continues until the player correctly guesses the character.
-
-## Game Characters
-Below is a list of available characters and their attributes:
-
-| Name    | Eye Color | Hair Color | Jumper Color | Gender | Glasses | Beard | Hat | Pet |
-|---------|----------|------------|--------------|--------|---------|-------|-----|-----|
-| Alice   | Blue     | Blonde     | Red          | Female | Yes     | No    | No  | Yes |
-| Bob     | Brown    | Black      | Blue         | Male   | No      | Yes   | Yes | No  |
-| Charlie | Green    | Brown      | Green        | Male   | Yes     | No    | No  | Yes |
-| Diana   | Hazel    | Red        | Yellow       | Female | No      | No    | Yes | No  |
-| Eve     | Blue     | Black      | Purple       | Female | Yes     | No    | No  | Yes |
-| Frank   | Brown    | Blonde     | Orange       | Male   | No      | Yes   | Yes | No  |
-| Grace   | Green    | Brown      | Pink         | Female | Yes     | No    | No  | Yes |
-| Hank    | Hazel    | Red        | Blue         | Male   | No      | Yes   | Yes | No  |
-| Ivy     | Blue     | Black      | Green        | Female | Yes     | No    | No  | Yes |
-| Jack    | Brown    | Blonde     | Yellow       | Male   | No      | Yes   | Yes | No  |
-
-## Gameplay Options
-### 1. Guessing a Character
-Players can attempt to guess the hidden character by entering a name.
-
-### 2. Asking Questions
-Players can ask yes/no questions to narrow down the possibilities. Example questions:
-- "Is the character male?"
-- "Does the character have glasses?"
-- "What is the character's hair color?"
-
-### 3. Requesting Hints
-Players can use hints to:
-- Get a random fact about the character.
-- Remove a wrong character from the board.
-
-## Code Structure
-### Main Components
-- `Character.scala` - Defines the character attributes.
-- `Board.scala` - Handles the game logic, random selection, and answering questions.
-- `GameLogic.scala` - Implements the interactive CLI game loop.
-- `BoardSpec.scala` - Unit tests for the game logic.
-
-## Testing
-The game logic is tested using **ScalaTest**.
-Run the tests using:
-```sh
-sbt test
-```
+## Game Flow
+1. Players are assigned a random character.
+2. Player 1 starts by asking a yes-or-no question.
+3. Player 2 responds, and Player 1 eliminates characters based on the response.
+4. Player 2 takes their turn.
+5. Players can use hints to get additional clues.
+6. Players can attempt to guess the opponent’s character at any time.
+7. The first player to correctly guess the character wins.
 
 ## Future Enhancements
-- Adding more characters and attributes.
-- Implementing a GUI for a better user experience.
-- Multiplayer functionality for online play.
+- Add a frontend for a graphical interface.
+- Implement networked multiplayer functionality.
+- Improve AI-based questioning logic.
 
 ## License
-This project is open-source and available under the [MIT License](LICENSE).
+This project is licensed under the **MIT License**.
 
-## Contributions
-Contributions are welcome! Feel free to submit issues or pull requests.
+---
+Enjoy playing **Guess Who?**!
 
 ---
 ### Author
 **Tudor Dura**
+
 **Ash George**
+
 **Nimo Mohamed**
 
 
