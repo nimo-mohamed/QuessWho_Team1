@@ -19,7 +19,7 @@ object GameLogic extends App {
   println("Here are the characters on the board:\n")
   board.characters.foreach(character => println(character.name))
   println()
-  println("Time to guess!")
+  println("\nTime to guess!")
 
   while (true) {
     println("Select one of the options below:\n")
@@ -46,9 +46,9 @@ object GameLogic extends App {
       println("4. Does the character have a pet?")
       println("5. Does the character have a beard?")
       println("6. Does the character have a hat?")
-      println("7. Does the character have a (colour) hair?")
-      println("8. Does the character have a (colour) eyes?")
-      println("9. Does the character have a (colour) jumper?")
+      println("7. What is the character's hair color?")
+      println("8. What is the character's eye color?")
+      println("9. What is the character's jumper color?")
 
       val userQuestionChoice: String = readLine("Choose a question: ")
 
@@ -58,7 +58,7 @@ object GameLogic extends App {
         if (response) {
           println("Well done, the character is MALE!")
         } else {
-          println("Loserrr! try again!")
+          println("Incorrect, try again!")
         }
       } else if (userQuestionChoice == "2") {
         val response: Boolean = board.askQuestion("female")
@@ -66,7 +66,7 @@ object GameLogic extends App {
         if (response) {
           println("Well done, the character is FEMALE!")
         } else {
-          println("Loserrr! try again!")
+          println("Incorrect, try again!")
         }
       } else if (userQuestionChoice == "3") {
         val response: Boolean = board.askQuestion("glasses")
@@ -74,7 +74,7 @@ object GameLogic extends App {
         if (response) {
           println("Well done, the character has glasses!")
         } else {
-          println("Loserrr! try again!")
+          println("Incorrect, try again!")
         }
       } else if (userQuestionChoice == "4") {
         val response: Boolean = board.askQuestion("pet")
@@ -82,7 +82,7 @@ object GameLogic extends App {
         if (response) {
           println("Well done, the character has a pet!")
         } else {
-          println("Loserrr! try again!")
+          println("Incorrect, try again!")
         }
       } else if (userQuestionChoice == "5") {
         val response: Boolean = board.askQuestion("beard")
@@ -90,7 +90,7 @@ object GameLogic extends App {
         if (response) {
           println("Well done, the character has a beard!")
         } else {
-          println("Loserrr! try again!")
+          println("Incorrect, try again!")
         }
       } else if (userQuestionChoice == "6") {
         val response: Boolean = board.askQuestion("hat")
@@ -98,7 +98,7 @@ object GameLogic extends App {
         if (response) {
           println("Well done, the character has a hat!")
         } else {
-          println("Loserrr! try again!")
+          println("Incorrect, try again!")
         }
       } else if (userQuestionChoice == "7") {
         val hairColour: String = readLine("Enter the hair colour!🔫: ").toLowerCase
@@ -108,7 +108,7 @@ object GameLogic extends App {
         if (response) {
           println(s"Well done, the character has $hairColour hair!")
         } else {
-          println("Loserrr! try again!")
+          println("Incorrect, try again!")
         }
       } else if (userQuestionChoice == "8") {
         val eyeColour: String = readLine("Enter the eye colour!🔫: ").toLowerCase
@@ -118,7 +118,7 @@ object GameLogic extends App {
         if (response) {
           println(s"Well done, the character has $eyeColour eyes!")
         } else {
-          println("Loserrr! try again!")
+          println("Incorrect, try again!")
         }
       } else if (userQuestionChoice == "9") {
         val jumperColour: String = readLine("Enter the jumper colour!🔫: ").toLowerCase
@@ -128,7 +128,7 @@ object GameLogic extends App {
         if (response) {
           println(s"Well done, the character has $jumperColour jumper!")
         } else {
-          println("Loserrr! try again!")
+          println("Incorrect, try again!")
         }
       } else {
         println("That's not a valid question choice.")
