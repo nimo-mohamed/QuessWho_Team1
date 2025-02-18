@@ -3,13 +3,12 @@ import scala.util.Random
 case class Board(characters: List[Character], player1: Player, player2: Player) {
   private var currentPlayer: Player = _
 
+  private val randomNumGen: Random = new Random()
   initialisePlayers()
 
   def switchPlayer(): Unit = currentPlayer = currentPlayer.opponent
 
   def getCurrentPlayerName: String = currentPlayer.name
-
-  private val randomNumGen: Random = new Random()
 
   private def getRandomCharacter: Character = {
     val randomCharacterIndex: Int = randomNumGen.nextInt(characters.length)
