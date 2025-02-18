@@ -8,17 +8,15 @@ case class Board(characters: List[Character]) {
 
   private val characterToGuess: Character = characters(characterToGuessIndex)
 
-  def getRandomWrongCharacterIndex: Int = {
-    var randomIndex: Int = randomNumGen.nextInt(characters.length)
-    while (randomIndex == characterToGuessIndex) {
-      randomIndex = randomNumGen.nextInt(characters.length)
-    }
-    randomIndex
-  }
+  def getRandomWrongCharacterName: String =
+    if (characters.length > 1) {
+      var randomIndex: Int = randomNumGen.nextInt(characters.length)
+      while (randomIndex == characterToGuessIndex) {
+        randomIndex = randomNumGen.nextInt(characters.length)
+      }
+      characters(randomIndex).name
+    } else "There's only ONE character to guess dummy😒! "
 
-  private val wrongCharacterIndex: Int = getRandomWrongCharacterIndex
-
-  val wrongCharacter: Character = characters(wrongCharacterIndex)
 
   def guessCharacter(name: String): Boolean = {
     characterToGuess.name == name

@@ -140,7 +140,7 @@ object GameLogic extends App {
       val userHintChoice: String = readLine("Enter hint choice: ")
 
       if (userHintChoice == "2") {
-        println(s"A wrong character is ${board.wrongCharacter.name}")
+        println(s"A wrong character is: ${board.getRandomWrongCharacterName}")
       } else {
         println("That's not a valid hint choice.")
       }
