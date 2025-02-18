@@ -3,14 +3,14 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 class BoardSpec extends AnyWordSpec with Matchers {
-  val character = Character("Nemo", "pink", "brown", "black", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = false)
+  val character = Character("Alice", "blue", "blonde", "red", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
   val characterList: List[Character] = List(character)
   val boardTest = Board(characterList)
 
   "guessCharacter" should {
     "return true" when {
       "the name matches the name of the character guessed" in {
-        val input = boardTest.guessCharacter("Nemo")
+        val input = boardTest.guessCharacter("Alice")
         val expectedResult = true
         input shouldBe expectedResult
       }
@@ -35,18 +35,18 @@ class BoardSpec extends AnyWordSpec with Matchers {
 
       "userQuestion is about hair colour and guess is correct" in {
         val input = boardTest.askQuestion("hair", "black")
-        val expectedResult = true
+        val expectedResult = false
         input shouldBe expectedResult
       }
 
       "userQuestion is about eye colour and guess is correct" in {
-        val input = boardTest.askQuestion("eyes", "brown")
+        val input = boardTest.askQuestion("eyes", "blue")
         val expectedResult = true
         input shouldBe expectedResult
       }
 
       "userQuestion is about jumper colour and guess is correct" in {
-        val input = boardTest.askQuestion("jumper", "pink")
+        val input = boardTest.askQuestion("jumper", "red")
         val expectedResult = true
         input shouldBe expectedResult
       }
@@ -58,7 +58,7 @@ class BoardSpec extends AnyWordSpec with Matchers {
       }
 
       "userQuestion is about whether they have a pet and they do" in {
-        val input = !boardTest.askQuestion("pet")
+        val input = boardTest.askQuestion("pet")
         val expectedResult = true
         input shouldBe expectedResult
       }
@@ -85,7 +85,7 @@ class BoardSpec extends AnyWordSpec with Matchers {
 
       "userQuestion is about hair colour and guess is incorrect" in {
         val input = boardTest.askQuestion("hair", "blonde")
-        val expectedResult = false
+        val expectedResult = true
         input shouldBe expectedResult
       }
 
@@ -109,7 +109,7 @@ class BoardSpec extends AnyWordSpec with Matchers {
 
       "userQuestion is about whether they have a pet and they don't" in {
         val input = boardTest.askQuestion("pet")
-        val expectedResult = false
+        val expectedResult = true
         input shouldBe expectedResult
       }
 
