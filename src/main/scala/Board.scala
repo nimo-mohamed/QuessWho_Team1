@@ -2,23 +2,23 @@ import scala.util.Random
 
 case class Board(characters: List[Character]) {
 
-  private val randomNumGen = new Random()
+  private val randomNumGen: Random = new Random()
 
-  private val characterToGuessIndex = randomNumGen.nextInt(characters.length)
+  private val characterToGuessIndex: Int = randomNumGen.nextInt(characters.length)
 
-  private val characterToGuess = characters(characterToGuessIndex)
+  private val characterToGuess: Character = characters(characterToGuessIndex)
 
   def getRandomWrongCharacterIndex: Int = {
-    var randomIndex = randomNumGen.nextInt(characters.length)
+    var randomIndex: Int = randomNumGen.nextInt(characters.length)
     while (randomIndex == characterToGuessIndex) {
       randomIndex = randomNumGen.nextInt(characters.length)
     }
     randomIndex
   }
 
-  private val wrongCharacterIndex = getRandomWrongCharacterIndex
+  private val wrongCharacterIndex: Int = getRandomWrongCharacterIndex
 
-  val wrongCharacter = characters(wrongCharacterIndex)
+  val wrongCharacter: Character = characters(wrongCharacterIndex)
 
   def guessCharacter(name: String): Boolean = {
     characterToGuess.name == name
