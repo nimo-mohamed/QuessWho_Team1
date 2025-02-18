@@ -3,9 +3,14 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 class BoardSpec extends AnyWordSpec with Matchers {
-  val character = Character("Alice", "blue", "blonde", "red", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
-  val characterList: List[Character] = List(character)
-  val boardTest = Board(characterList)
+  private val character = Character("Alice", "blue", "blonde", "red", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
+
+  private val characterList: List[Character] = List(character)
+
+  private val player1: Player = Player("Andy")
+  private val player2: Player = Player("April")
+
+  private val boardTest = Board(characterList, player1, player2)
 
   "guessCharacter" should {
     "return true" when {
