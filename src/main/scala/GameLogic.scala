@@ -18,7 +18,6 @@ object GameLogic extends App {
   println("Welcome to Quess Who!")
   println("Here are the characters on the board:\n")
   board.characters.foreach(character => println(character.name))
-  println()
   println("\nTime to guess!")
 
   while (true) {
@@ -138,8 +137,9 @@ object GameLogic extends App {
       println("2. Remove one wrong character from the game")
 
       val userHintChoice: String = readLine("Enter hint choice: ")
-
-      if (userHintChoice == "2") {
+      if (userHintChoice == "1") {
+        println(board.getRandomTraitHint)
+      } else if (userHintChoice == "2") {
         println(s"A wrong character is: ${board.getRandomWrongCharacterName}")
       } else {
         println("That's not a valid hint choice.")
