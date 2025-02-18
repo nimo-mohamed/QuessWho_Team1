@@ -1,9 +1,6 @@
 import scala.util.Random
 
 case class Board(characters: List[Character], player1: Player, player2: Player) {
-
-  private val randomNumGen: Random = new Random()
-
   private var currentPlayer: Player = _
 
   initialisePlayers()
@@ -12,9 +9,19 @@ case class Board(characters: List[Character], player1: Player, player2: Player) 
 
   def getCurrentPlayerName: String = currentPlayer.name
 
+  private val randomNumGen: Random = new Random()
+
   private def getRandomCharacter: Character = {
     val randomCharacterIndex: Int = randomNumGen.nextInt(characters.length)
     characters(randomCharacterIndex)
+  }
+
+  private def initialisePlayers(): Unit = {
+    currentPlayer = player1
+    player1.opponent = player2
+    player2.opponent = player1
+    player1.characterToGuess = getRandomCharacter
+    player2.characterToGuess = getRandomCharacter
   }
 
   def getRandomWrongCharacterName: String =
@@ -43,14 +50,6 @@ case class Board(characters: List[Character], player1: Player, player2: Player) 
       val randomTraitIndex: Int = randomNumGen.nextInt(characterTraits.length)
       characterTraits(randomTraitIndex)
     } else "You already used this hint!"
-  }
-
-  private def initialisePlayers(): Unit = {
-    currentPlayer = player1
-    player1.opponent = player2
-    player2.opponent = player1
-    player1.characterToGuess = getRandomCharacter
-    player2.characterToGuess = getRandomCharacter
   }
 
   def guessCharacter(name: String): Boolean = {
