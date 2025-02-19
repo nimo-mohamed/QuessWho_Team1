@@ -62,9 +62,6 @@ Below is a list of characters and their traits:
 - Add more characters and more traits. 
 - Add a frontend for a graphical interface.
 
-## License
-This project is licensed under the **MIT License**.
-
 ---
 Enjoy playing **Guess Who?**!
 
