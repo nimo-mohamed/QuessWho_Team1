@@ -11,6 +11,8 @@ case class Player(name: String) {
   /** The character that the player needs to guess. */
   var characterToGuess: Character = _
 
+  var remainingCharacters: List[Character] = _
+
   /** Indicates if the player has used the wrong character hint. */
   var hasUsedWrongCharacterHint: Boolean = false
 

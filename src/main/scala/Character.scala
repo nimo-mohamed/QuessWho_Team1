@@ -11,4 +11,6 @@
  * @param hasHat       Indicates if the character has a hat.
  * @param hasPet       Indicates if the character has a pet.
  */
-case class Character(name: String, eyeColour: String, hairColour: String, jumperColour: String, isMale: Boolean, hasGlasses: Boolean, hasBeard: Boolean, hasHat: Boolean, hasPet: Boolean)
+case class Character(name: String, eyeColour: String, hairColour: String, jumperColour: String, isMale: Boolean, hasGlasses: Boolean, hasBeard: Boolean, hasHat: Boolean, hasPet: Boolean) {
+  override def toString: String = name
+}
