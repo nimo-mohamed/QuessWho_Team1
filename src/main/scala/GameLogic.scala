@@ -2,6 +2,11 @@ import scala.io.StdIn.readLine
 
 object GameLogic extends App {
 
+  /**
+   * Initializes the game board with predefined characters and players.
+   *
+   * @return The initialized game board.
+   */
   private def initializeBoard: Board = {
     val character1 = Character("Alice", "blue", "blonde", "red", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
     val character2 = Character("Bob", "brown", "black", "blue", isMale = true, hasGlasses = false, hasBeard = true, hasHat = true, hasPet = false)
@@ -22,8 +27,12 @@ object GameLogic extends App {
     board
   }
 
+  /** The game board initialized with characters and players. */
   private val board: Board = initializeBoard
 
+  /**
+   * Prompts the user to guess the character's name and checks if the guess is correct.
+   */
   private def guessNameOption(): Unit = {
     val nameGuess: String = readLine("Enter character's name: ").toLowerCase.capitalize
 
@@ -35,6 +44,9 @@ object GameLogic extends App {
     }
   }
 
+  /**
+   * Prompts the user to ask a question about the character and checks if the answer is correct.
+   */
   private def askQuestionOption(): Unit = {
     println("1. Is the character male?")
     println("2. Is the character female?")
@@ -131,6 +143,9 @@ object GameLogic extends App {
     }
   }
 
+  /**
+   * Prompts the user to choose a hint option and provides the corresponding hint.
+   */
   private def giveHintOption(): Unit = {
     println("1. Tell me a fact about the character")
     println("2. Remove one wrong character from the game\n")
@@ -146,6 +161,9 @@ object GameLogic extends App {
     }
   }
 
+  /**
+   * Starts the game and manages the game loop.
+   */
   private def startGame(): Unit = {
     println("Welcome to Quess Who!")
     println("Here are the characters on the board:\n")
@@ -170,6 +188,7 @@ object GameLogic extends App {
         giveHintOption()
       } else {
         println("That's not a valid choice.")
+        board.switchPlayer()
       }
 
       board.switchPlayer()
@@ -178,5 +197,6 @@ object GameLogic extends App {
     }
   }
 
+  // Start the game
   startGame()
 }
