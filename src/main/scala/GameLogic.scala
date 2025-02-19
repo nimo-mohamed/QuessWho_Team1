@@ -41,6 +41,7 @@ object GameLogic extends App {
       System.exit(0)
     } else {
       println("Try again, that wasn't the character's name.")
+      board.narrowCurrentPlayerRemainingCharacters("name", nameGuess, negate = true)
     }
   }
 
@@ -73,19 +74,23 @@ object GameLogic extends App {
       case _ => ""
     }
 
-    val guess: String = if (userQuestionNumber.toInt >= 7) {
-      readLine(s"Enter your guess for the $userQuestion: ").toLowerCase
-    } else ""
+    if (userQuestion != "") {
+      val guess: String = if (userQuestionNumber.toInt >= 7) {
+        readLine(s"Enter your guess for the $userQuestion: ").toLowerCase
+      } else ""
 
-    val response: Boolean = board.askQuestion(userQuestion, guess)
+      val response: Boolean = board.askQuestion(userQuestion, guess)
 
-    if (response) {
-      println(s"Your guess about the $userQuestion was correct!")
+      if (response) {
+        println(s"Your guess about the $userQuestion was correct!")
+      } else {
+        println(s"Your guess about the $userQuestion was incorrect!")
+      }
+
+      board.narrowCurrentPlayerRemainingCharacters(userQuestion, guess, negate = !response)
     } else {
-      println(s"Your guess about the $userQuestion was incorrect!")
+      println("That is not a valid question choice!")
     }
-
-    board.narrowCurrentPlayerRemainingCharacters(userQuestion, guess, negate = !response)
   }
 
   /**
