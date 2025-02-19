@@ -2,6 +2,11 @@ import scala.io.StdIn.readLine
 
 object GameLogic extends App {
 
+  /**
+   * Initializes the game board with predefined characters and players.
+   *
+   * @return The initialized game board.
+   */
   private def initializeBoard: Board = {
     val character1 = Character("Alice", "blue", "blonde", "red", isMale = false, hasGlasses = true, hasBeard = false, hasHat = false, hasPet = true)
     val character2 = Character("Bob", "brown", "black", "blue", isMale = true, hasGlasses = false, hasBeard = true, hasHat = true, hasPet = false)
@@ -22,8 +27,12 @@ object GameLogic extends App {
     board
   }
 
+  /** The game board initialized with characters and players. */
   private val board: Board = initializeBoard
 
+  /**
+   * Prompts the user to guess the character's name and checks if the guess is correct.
+   */
   private def guessNameOption(): Unit = {
     val nameGuess: String = readLine("Enter character's name: ").toLowerCase.capitalize
 
@@ -32,9 +41,13 @@ object GameLogic extends App {
       System.exit(0)
     } else {
       println("Try again, that wasn't the character's name.")
+      board.narrowCurrentPlayerRemainingCharacters("name", nameGuess, negate = true)
     }
   }
 
+  /**
+   * Prompts the user to ask a question about the character and checks if the answer is correct.
+   */
   private def askQuestionOption(): Unit = {
     println("1. Is the character male?")
     println("2. Is the character female?")
@@ -46,91 +59,43 @@ object GameLogic extends App {
     println("8. What is the character's eye color?")
     println("9. What is the character's jumper color?\n")
 
-    val userQuestionChoice: String = readLine("Choose a question: ")
+    val userQuestionNumber: String = readLine("Choose a question: ")
 
-    if (userQuestionChoice == "1") {
-      val response: Boolean = board.askQuestion("male")
+    val userQuestion: String = userQuestionNumber match {
+      case "1" => "male"
+      case "2" => "female"
+      case "3" => "glasses"
+      case "4" => "pet"
+      case "5" => "beard"
+      case "6" => "hat"
+      case "7" => "hair"
+      case "8" => "eyes"
+      case "9" => "jumper"
+      case _ => ""
+    }
 
-      if (response) {
-        println("Well done, the character is MALE!")
-      } else {
-        println("Incorrect, try again!")
-      }
-    } else if (userQuestionChoice == "2") {
-      val response: Boolean = board.askQuestion("female")
+    if (userQuestion != "") {
+      val guess: String = if (userQuestionNumber.toInt >= 7) {
+        readLine(s"Enter your guess for the $userQuestion: ").toLowerCase
+      } else ""
 
-      if (response) {
-        println("Well done, the character is FEMALE!")
-      } else {
-        println("Incorrect, try again!")
-      }
-    } else if (userQuestionChoice == "3") {
-      val response: Boolean = board.askQuestion("glasses")
-
-      if (response) {
-        println("Well done, the character has glasses!")
-      } else {
-        println("Incorrect, try again!")
-      }
-    } else if (userQuestionChoice == "4") {
-      val response: Boolean = board.askQuestion("pet")
+      val response: Boolean = board.askQuestion(userQuestion, guess)
 
       if (response) {
-        println("Well done, the character has a pet!")
+        println(s"Your guess about the $userQuestion was correct!")
       } else {
-        println("Incorrect, try again!")
+        println(s"Your guess about the $userQuestion was incorrect!")
       }
-    } else if (userQuestionChoice == "5") {
-      val response: Boolean = board.askQuestion("beard")
 
-      if (response) {
-        println("Well done, the character has a beard!")
-      } else {
-        println("Incorrect, try again!")
-      }
-    } else if (userQuestionChoice == "6") {
-      val response: Boolean = board.askQuestion("hat")
-
-      if (response) {
-        println("Well done, the character has a hat!")
-      } else {
-        println("Incorrect, try again!")
-      }
-    } else if (userQuestionChoice == "7") {
-      val hairColour: String = readLine("Enter the hair colour!🔫: ").toLowerCase
-
-      val response: Boolean = board.askQuestion("hair", hairColour)
-
-      if (response) {
-        println(s"Well done, the character has $hairColour hair!")
-      } else {
-        println("Incorrect, try again!")
-      }
-    } else if (userQuestionChoice == "8") {
-      val eyeColour: String = readLine("Enter the eye colour!🔫: ").toLowerCase
-
-      val response: Boolean = board.askQuestion("eyes", eyeColour)
-
-      if (response) {
-        println(s"Well done, the character has $eyeColour eyes!")
-      } else {
-        println("Incorrect, try again!")
-      }
-    } else if (userQuestionChoice == "9") {
-      val jumperColour: String = readLine("Enter the jumper colour!🔫: ").toLowerCase
-
-      val response: Boolean = board.askQuestion("jumper", jumperColour)
-
-      if (response) {
-        println(s"Well done, the character has $jumperColour jumper!")
-      } else {
-        println("Incorrect, try again!")
-      }
+      board.narrowCurrentPlayerRemainingCharacters(userQuestion, guess, negate = !response)
     } else {
-      println("That's not a valid question choice.")
+      println("That is not a valid question choice!")
     }
   }
 
+  /**
+   * Prompts the user to choose a hint option and provides the corresponding hint.
+   */
   private def giveHintOption(): Unit = {
     println("1. Tell me a fact about the character")
     println("2. Remove one wrong character from the game\n")
@@ -146,14 +111,20 @@ object GameLogic extends App {
     }
   }
 
+  /**
+   * Starts the game and manages the game loop.
+   */
   private def startGame(): Unit = {
     println("Welcome to Quess Who!")
     println("Here are the characters on the board:\n")
-    board.characters.foreach(character => println(character.name))
-    println("\nTime to guess!")
+    board.printCurrentPlayerRemainingCharacters()
+    println("\nTime to guess!\n")
 
     while (true) {
-      println(s"It's your turn ${board.getCurrentPlayerName}")
+      println(s"It's your turn ${board.getCurrentPlayerName}\n")
+      println(s"These are your remaining characters, ${board.getCurrentPlayerName}:\n")
+      board.printCurrentPlayerRemainingCharacters()
+      println()
       println("Select one of the options below:\n")
       println("1. Guess character")
       println("2. Ask question")
@@ -170,6 +141,7 @@ object GameLogic extends App {
         giveHintOption()
       } else {
         println("That's not a valid choice.")
+        board.switchPlayer()
       }
 
       board.switchPlayer()
@@ -178,5 +150,6 @@ object GameLogic extends App {
     }
   }
 
+  // Start the game
   startGame()
 }
